@@ -16,8 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from yjb.views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('yjb/', include('yjb.urls'))
+    path('yjb/', include('yjb.urls')),
+    path('', home, name="home")
 ]
