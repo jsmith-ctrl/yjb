@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -33,6 +34,6 @@ def employee_signup(request):
 def employer_signup(request):
     return render(request, "yjb/employer/sign-up-employer.html")
 
-def job_detail(request):
-    return render(request, "yjb/job-detail.html")
-
+def helloworld(request):
+     debug_string = "<br>".join(f"<b>{k}</b>: {v}" for k, v in request.META.items())
+     return HttpResponse(debug_string, content_type="text/html")
