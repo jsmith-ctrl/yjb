@@ -33,3 +33,6 @@ def employee_signup(request):
 def employer_signup(request):
     return render(request, "yjb/employer/sign-up-employer.html")
 
+def job_detail(request):
+    return render(request, "yjb/job-detail.html")
+
