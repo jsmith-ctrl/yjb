@@ -21,5 +21,6 @@ from yjb.views import home
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('yjb/', include('yjb.urls')),
-    path('', home, name="home")
+    path('', home, name="home"),
+    path("accounts/", include("accounts.urls")),
 ]
