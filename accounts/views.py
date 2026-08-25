@@ -5,8 +5,20 @@ from django.contrib.auth import login
 from django.db import transaction
 from django.shortcuts import render, redirect
 
-from .forms import EmployeeSignupForm, EmployerSignupForm
+from .forms import AccountLoginForm, EmployeeSignupForm, EmployerSignupForm
 from .models import User, EmployeeProfile, EmployerProfile
+
+
+def login_view(request):
+    if request.user.is_authenticated:
+        return redirect("home")
+
+    form = AccountLoginForm(request, data=request.POST or None)
+    if request.method == "POST" and form.is_valid():
+        login(request, form.get_user())
+        return redirect("home")
+
+    return render(request, "accounts/login.html", {"form": form})
 
 
 @transaction.atomic

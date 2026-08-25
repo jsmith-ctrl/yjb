@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container mt-5" style="max-width: 520px;">
+    <h1>Log in</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary" type="submit">Log in</button>
+    </form>
+
+    <p class="mt-3">
+        Need an account?
+        <a href="{% url 'employee_signup' %}">Join as an employee</a>
+        or
+        <a href="{% url 'employer_signup' %}">sign up as an employer</a>.
+    </p>
+</div>
+
+{% endblock %}
