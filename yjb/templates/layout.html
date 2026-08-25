@@ -32,27 +32,36 @@
           <li class="nav-item">
             <a class="nav-link" href="/yjb/job-listings">Jobs</a>
           </li>
+          {% if not user.is_authenticated or user.role == "employee" %}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Job Seekers
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/accounts/signup/employee/">Sign up</a></li>
+              {% if not user.is_authenticated %}
+              <li><a class="dropdown-item" href="{% url 'employee_signup' %}">Sign up</a></li>
+              {% endif %}
               <li><a class="dropdown-item" href="#">Part-Time Jobs</a></li>
               <li><a class="dropdown-item" href="#">Full-Time Jobs</a></li>
               <li><a class="dropdown-item" href="#">Seasonal Jobs</a></li>
             </ul>
           </li>
+          {% endif %}
+          {% if not user.is_authenticated or user.role == "employer" %}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Employers
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/accounts/signup/employer/">Sign Up</a></li>
+              {% if not user.is_authenticated %}
+              <li><a class="dropdown-item" href="{% url 'employer_signup' %}">Sign Up</a></li>
+              {% endif %}
               <li><a class="dropdown-item" href="#">Post a Job</a></li>
               <li><a class="dropdown-item" href="#">Manage Postings</a></li>
-              <li><a class="dropdown-item" href="/yjb/applicants">View applicants</a></li>
-          </ul>
+              <li><a class="dropdown-item" href="{% url 'applicants' %}">View applicants</a></li>
+            </ul>
+          </li>
+          {% endif %}
 
           <li class="nav-item">
             <a class="nav-link" href="#">Resources</a>
