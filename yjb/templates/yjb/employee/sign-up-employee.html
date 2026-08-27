@@ -2,6 +2,293 @@
 
 {% block content %}
 
-<div>Employee Sign-up</div>
+<style>
+    .profile-form-wrapper {
+        max-width: 750px;
+        margin: 40px auto;
+        padding: 0 15px;
+    }
+
+    .profile-card {
+        background: #12578d;
+        border-radius: 16px;
+        padding: 35px;
+        box-shadow: 0 8px 30px #fcfcfc;
+        border: 1px solid #ffd979;
+    }
+
+    .profile-title {
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 8px;
+    }
+
+    .profile-subtitle {
+        color: #fff;
+        margin-bottom: 30px;
+    }
+
+    .form-label {
+        font-weight: 600;
+        margin-bottom: 7px;
+    }
+
+    .form-control,
+    .form-select {
+        border-radius: 8px;
+        padding: 11px 14px;
+        border: 1px solid #ffd979;
+        transition: all 0.2s ease;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #ffd979;
+        box-shadow: 0 0 0 0.2rem #00000026;
+    }
+
+    .input-group-text {
+        background-color: #fff;
+        border-radius: 8px 0 0 8px;
+        font-weight: 500;
+    }
+
+    .optional {
+        color: #ffd979;
+        font-size: 0.85rem;
+    }
+
+    .username-prefix {
+        background: #fff;
+        color: #00000085;
+        white-space: nowrap;
+    }
+
+    .form-section {
+        margin-bottom: 22px;
+    }
+
+    .form-help {
+        color: #000000c5;
+        font-size: 0.875rem;
+        margin-top: 6px;
+    }
+
+    .submit-btn {
+        width: 100%;
+        margin-top: 10px;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        background: #ffd979;
+        color: #000000c5;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: 0.2s ease;
+    }
+
+    .submit-btn:hover {
+        background: #00000026;
+        transform: translateY(-1px);
+    }
+
+    @media (max-width: 576px) {
+        .profile-card {
+            padding: 22px;
+        }
+
+        .username-prefix {
+            font-size: 0.8rem;
+        }
+    }
+</style>
+
+<div class="profile-form-wrapper">
+
+    <div class="profile-card">
+
+        <h2 class="profile-title">Create Your Profile</h2>
+        <p class="profile-subtitle">
+            Enter your information below to get started.
+        </p>
+
+        <form method="POST" action="">
+
+            <!-- Name -->
+            <div class="row">
+                <div class="col-md-6 form-section">
+                    <label for="firstName" class="form-label">First Name</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="firstName"
+                        name="first_name"
+                        placeholder="First Name"
+                        required
+                    >
+                </div>
+
+                <div class="col-md-6 form-section">
+                    <label for="lastName" class="form-label">
+                        Last Name
+                        <span class="optional">(Optional)</span>
+                    </label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="lastName"
+                        name="last_name"
+                        placeholder="Last Name"
+                    >
+                </div>
+            </div>
+
+            <!-- Friend URL -->
+            <div class="form-section">
+                <label for="usernameLink" class="form-label">
+                    Want your friends to go on this?
+                </label>
+
+                <div class="input-group">
+                    <span class="input-group-text username-prefix">
+                        https://nbih.com/users/
+                    </span>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="usernameLink"
+                        name="profile_username"
+                        placeholder="yourusername"
+                    >
+                </div>
+
+                <div class="form-help">
+                    Tell your friends to visit this URL!
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="form-section">
+                <label for="email" class="form-label">Email</label>
+                <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    placeholder="you@example.com"
+                    required
+                >
+            </div>
+
+            <!-- Username & Password -->
+            <div class="row">
+                <div class="col-md-6 form-section">
+                    <label for="username" class="form-label">Username</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="username"
+                        name="username"
+                        placeholder="Username"
+                        required
+                    >
+                </div>
+
+                <div class="col-md-6 form-section">
+                    <label for="password" class="form-label">Password</label>
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="password"
+                        name="password"
+                        placeholder="Password"
+                        required
+                    >
+                </div>
+            </div>
+
+            <!-- Phone -->
+            <div class="form-section">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input
+                    type="tel"
+                    class="form-control"
+                    id="phone"
+                    name="phone"
+                    placeholder="(306) 555-1234"
+                >
+            </div>
+
+            <!-- Province -->
+            <div class="form-section">
+                <label for="province" class="form-label">Province / Territory</label>
+
+                <select
+                    class="form-select"
+                    id="province"
+                    name="province"
+                    required
+                >
+                    <option value="" selected disabled>
+                        Select your province
+                    </option>
+                    <option value="SK">Saskatchewan</option>
+                    <option value="BC">British Columbia</option>
+                    <option value="AB">Alberta</option>
+                    <option value="NS">Nova Scotia</option>
+                    <option value="NU">Nunavut</option>
+                    <option value="NL">Newfoundland and Labrador</option>
+                    <option value="NT">Northwest Territories</option>
+                    <option value="NB">New Brunswick</option>
+                    <option value="MB">Manitoba</option>
+                    <option value="QC">Quebec</option>
+                    <option value="ON">Ontario</option>
+                    <option value="YT">Yukon</option>
+                    <option value="PE">Prince Edward Island</option>
+                </select>
+            </div>
+
+            <!-- Address -->
+            <div class="form-section">
+                <label for="address" class="form-label">
+                    Address
+                    <span class="optional">(Optional)</span>
+                </label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    id="address"
+                    name="address"
+                    placeholder="123 Main Street"
+                >
+            </div>
+
+            <!-- Age -->
+            <div class="form-section">
+                <label for="age" class="form-label">Age</label>
+
+                <input
+                    type="number"
+                    class="form-control"
+                    id="age"
+                    name="age"
+                    placeholder="18"
+                    min="1"
+                    max="120"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="submit-btn">
+                Create Profile
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
 
 {% endblock %}
