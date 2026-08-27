@@ -2,6 +2,895 @@
 
 {% block content %}
 
-<div>Default</div>
+<!-- Bootstrap 5 CSS -->
+<link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+>
+
+<style>
+    :root {
+        --yjb-blue: #0F172A;
+        --yjb-dark: #64748B;
+        --yjb-light-blue: #eaf5ff;
+        --yjb-green: #CBD5E1;
+        --yjb-yellow: #DCCB76;
+        --yjb-light: #f7f9fc;
+        --yjb-text: #FFFFFF;
+        --yjb-muted: #0F172A;
+    }
+
+    body {
+        color: var(--yjb-text);
+        background: #ffffff;
+    }
+
+    /* =========================
+       HERO
+    ========================== */
+
+    .hero {
+        background:
+            linear-gradient(
+                135deg,
+                 #789BB5,
+                #DCCB76
+            );
+        color: white;
+        padding: 90px 0 110px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero::after {
+        content: "";
+        position: absolute;
+        width: 450px;
+        height: 450px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.06);
+        right: -150px;
+        top: -150px;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 9px 16px;
+        border-radius: 50px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        margin-bottom: 22px;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.6rem, 6vw, 4.8rem);
+        line-height: 1.05;
+        font-weight: 800;
+        letter-spacing: -2px;
+        max-width: 800px;
+    }
+
+    .hero h1 span {
+        color: var(--yjb-yellow);
+    }
+
+    .hero-text {
+        font-size: 1.2rem;
+        line-height: 1.7;
+        max-width: 680px;
+        color: rgba(255, 255, 255, 0.88);
+        margin: 25px 0 32px;
+    }
+
+    .btn-yjb {
+        background: var(--yjb-yellow);
+        color: #172b3a;
+        border: none;
+        font-weight: 700;
+        padding: 13px 25px;
+        border-radius: 10px;
+        transition: 0.2s ease;
+    }
+
+    .btn-yjb:hover {
+        background: #ffffff;
+        color: #ffffff;
+        transform: translateY(-2px);
+    }
+
+    .btn-outline-white {
+        color: white;
+        border: 2px solid rgba(255, 255, 255, 0.65);
+        font-weight: 600;
+        padding: 12px 24px;
+        border-radius: 10px;
+    }
+
+    .btn-outline-white:hover {
+        background: white;
+        color: var(--yjb-dark);
+    }
+
+
+    /* =========================
+       SEARCH CARD
+    ========================== */
+
+    .search-wrapper {
+        margin-top: -55px;
+        position: relative;
+        z-index: 5;
+    }
+
+    .search-card {
+        background: white;
+        border-radius: 18px;
+        padding: 28px;
+        box-shadow: 0 15px 45px rgba(20, 45, 70, 0.14);
+    }
+
+    .search-title {
+        font-size: 1.25rem;
+        font-weight: 750;
+        color: var(--yjb-dark);
+        margin-bottom: 18px;
+    }
+
+    .search-card label {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--yjb-dark);
+        margin-bottom: 7px;
+    }
+
+    .search-card .form-control {
+        min-height: 52px;
+        border: 1px solid #dbe3ec;
+        border-radius: 10px;
+        font-size: 1rem;
+        padding: 12px 15px;
+    }
+
+    .search-card .form-control:focus {
+        border-color: var(--yjb-blue);
+        box-shadow: 0 0 0 3px rgba(23, 105, 170, 0.12);
+    }
+
+    .search-btn {
+        min-height: 52px;
+        width: 100%;
+        border-radius: 10px;
+        background: var(--yjb-blue);
+        border: none;
+        color: white;
+        font-weight: 700;
+    }
+
+    .search-btn:hover {
+        background: #0d791b;
+        color: white;
+    }
+
+
+    /* =========================
+       SECTION
+    ========================== */
+
+    .section {
+        padding: 85px 0;
+    }
+
+    .section-light {
+        background: var(--yjb-light);
+    }
+
+    .section-label {
+        color: var(--yjb-blue);
+        font-size: 0.85rem;
+        font-weight: 800;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .section-title {
+        color: var(--yjb-dark);
+        font-weight: 800;
+        font-size: clamp(2rem, 4vw, 3rem);
+        letter-spacing: -1px;
+    }
+
+    .section-description {
+        color: var(--yjb-muted);
+        font-size: 1.1rem;
+        line-height: 1.7;
+        max-width: 700px;
+    }
+
+
+    /* =========================
+       FEATURE CARDS
+    ========================== */
+
+    .feature-card {
+        background: rgb(245, 243, 243);
+        border: 1px solid #e7edf3;
+        border-radius: 16px;
+        height: 100%;
+        overflow: hidden;
+        transition: 0.25s ease;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 18px 40px rgba(20, 45, 70, 0.10);
+    }
+
+    .feature-image {
+        height: 190px;
+        overflow: hidden;
+    }
+
+    .feature-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+    }
+
+    .feature-card:hover .feature-image img {
+        transform: scale(1.04);
+    }
+
+    .feature-body {
+        padding: 25px;
+    }
+
+    .feature-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 13px;
+        background: var(--yjb-light-blue);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-bottom: 18px;
+    }
+
+    .feature-card h3 {
+        color: var(--yjb-dark);
+        font-size: 1.4rem;
+        font-weight: 750;
+    }
+
+    .feature-card p {
+        color: var(--yjb-muted);
+        line-height: 1.65;
+        font-size: 1rem;
+    }
+
+    .feature-link {
+        color: var(--yjb-blue);
+        text-decoration: none;
+        font-weight: 700;
+    }
+
+    .feature-link:hover {
+        color: #151d42;
+    }
+
+
+    /* =========================
+       QUICK LINKS
+    ========================== */
+
+    .quick-card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        height: 100%;
+        border: 1px solid #e4ebf2;
+    }
+
+    .quick-card h3 {
+        font-size: 1.2rem;
+        font-weight: 750;
+        color: var(--yjb-dark);
+    }
+
+    .quick-card p {
+        color: var(--yjb-muted);
+        line-height: 1.6;
+    }
+
+    .quick-icon {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+
+
+    /* =========================
+       LOCAL SECTION
+    ========================== */
+
+    .local-section {
+        background: var(--yjb-light-blue);
+    }
+
+    .local-box {
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        border: 1px solid #d9eaf8;
+    }
+
+    .local-box h2 {
+        color: var(--yjb-dark);
+        font-weight: 800;
+    }
+
+    .local-box p {
+        color: var(--yjb-muted);
+        font-size: 1.05rem;
+        line-height: 1.7;
+    }
+
+
+    /* =========================
+       CTA
+    ========================== */
+
+    .cta {
+        background: var(--yjb-dark);
+        color: white;
+        padding: 80px 0;
+    }
+
+    .cta h2 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 800;
+    }
+
+    .cta p {
+        color: rgba(255,255,255,0.75);
+        font-size: 1.1rem;
+        margin: 18px auto 28px;
+        max-width: 600px;
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================== */
+
+    @media (max-width: 767px) {
+
+        .hero {
+            padding: 60px 0 90px;
+        }
+
+        .hero h1 {
+            letter-spacing: -1px;
+        }
+
+        .hero-text {
+            font-size: 1.05rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .hero-buttons .btn {
+            width: 100%;
+        }
+
+        .search-card {
+            padding: 20px;
+        }
+
+        .search-wrapper {
+            margin-top: -40px;
+        }
+
+        .section {
+            padding: 60px 0;
+        }
+
+        .local-box {
+            padding: 28px;
+        }
+
+    }
+</style>
+
+
+<!-- =========================
+     HERO
+========================== -->
+
+<section class="hero">
+
+    <div class="container">
+
+        <div class="hero-content">
+
+            <span class="hero-badge">
+                📍 North Battleford & Area
+            </span>
+
+            <h1>
+                Find your first job.
+                <span>Build your future.</span>
+            </h1>
+
+            <p class="hero-text">
+                YJB connects young people with jobs, internships,
+                volunteer opportunities, and employers in North Battleford
+                and surrounding communities.
+            </p>
+
+            <div class="hero-buttons d-flex flex-wrap gap-3">
+
+                <a href="#job-search" class="btn btn-yjb btn-lg">
+                    Find a Job →
+                </a>
+
+                <a href="#opportunities" class="btn btn-outline-white btn-lg">
+                    Explore Opportunities
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     JOB SEARCH
+========================== -->
+
+<section class="search-wrapper" id="job-search">
+
+    <div class="container">
+
+        <div class="search-card">
+
+            <div class="search-title">
+                🔎 Search for opportunities
+            </div>
+
+            <form action="#" method="GET">
+
+                <div class="row g-3 align-items-end">
+
+                    <div class="col-lg-5">
+
+                        <label for="job">
+                            What are you looking for?
+                        </label>
+
+                        <input
+                            id="job"
+                            type="text"
+                            name="job"
+                            class="form-control"
+                            placeholder="Job title, keyword or employer"
+                        >
+
+                    </div>
+
+
+                    <div class="col-lg-4">
+
+                        <label for="location">
+                            Where?
+                        </label>
+
+                        <input
+                            id="location"
+                            type="text"
+                            name="location"
+                            class="form-control"
+                            placeholder="North Battleford, SK"
+                            value="North Battleford, SK"
+                        >
+
+                    </div>
+
+
+                    <div class="col-lg-3">
+
+                        <button
+                            type="submit"
+                            class="btn search-btn"
+                        >
+                            Search Jobs
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     WHY YJB
+========================== -->
+
+<section class="section" id="opportunities">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="section-label">
+                Why YJB?
+            </span>
+
+            <h2 class="section-title">
+                Your first step toward something bigger.
+            </h2>
+
+            <p class="section-description mx-auto">
+                Whether you're looking for your first job, an internship,
+                or a chance to build experience, YJB helps young people
+                take the next step.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <!-- First Jobs -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="feature-card">
+
+                    <div class="feature-image">
+
+                        <img
+                            src="https://www.greatplacetowork.ca/images/storage/smiling-african-student-pointing-with-pencil-laptop-screen-concentrated-blonde-woman-glasses-propping-chin-with-hand-while-working-with-computer-office.jpg"
+                            alt="Young people working together"
+                        >
+
+                    </div>
+
+                    <div class="feature-body">
+
+                        <div class="feature-icon">
+                            💼
+                        </div>
+
+                        <h3>
+                            First Jobs
+                        </h3>
+
+                        <p>
+                            Find entry-level jobs that fit your skills,
+                            interests, availability, and goals.
+                        </p>
+
+                        <a href="#" class="feature-link">
+                            Find your first job →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Internships -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="feature-card">
+
+                    <div class="feature-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=900&q=80"
+                            alt="Young professionals working together"
+                        >
+
+                    </div>
+
+                    <div class="feature-body">
+
+                        <div class="feature-icon">
+                            🎓
+                        </div>
+
+                        <h3>
+                            Internships
+                        </h3>
+
+                        <p>
+                            Gain real-world experience, learn new skills,
+                            and discover what kind of career interests you.
+                        </p>
+
+                        <a href="#" class="feature-link">
+                            Explore internships →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Experience -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="feature-card">
+
+                    <div class="feature-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=900&q=80"
+                            alt="Team collaborating in an office"
+                        >
+
+                    </div>
+
+                    <div class="feature-body">
+
+                        <div class="feature-icon">
+                            🌱
+                        </div>
+
+                        <h3>
+                            Build Experience
+                        </h3>
+
+                        <p>
+                            Start building the skills, confidence, and
+                            experience you need for your future career.
+                        </p>
+
+                        <a href="#" class="feature-link">
+                            Start growing →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     QUICK OPTIONS
+========================== -->
+
+<section class="section section-light">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="section-label">
+                Get Started
+            </span>
+
+            <h2 class="section-title">
+                What are you looking for?
+            </h2>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <div class="col-md-4">
+
+                <div class="quick-card text-center">
+
+                    <div class="quick-icon">
+                        👤
+                    </div>
+
+                    <h3>
+                        I'm Looking for a Job
+                    </h3>
+
+                    <p>
+                        Browse opportunities and find work
+                        that fits your goals.
+                    </p>
+
+                    <a href="#" class="btn btn-outline-primary">
+                        Browse Jobs
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="quick-card text-center">
+
+                    <div class="quick-icon">
+                        🏢
+                    </div>
+
+                    <h3>
+                        I'm an Employer
+                    </h3>
+
+                    <p>
+                        Connect with motivated young people
+                        looking for their next opportunity.
+                    </p>
+
+                    <a href="#" class="btn btn-outline-primary">
+                        Post a Job
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="quick-card text-center">
+
+                    <div class="quick-icon">
+                        🧭
+                    </div>
+
+                    <h3>
+                        I Need Help
+                    </h3>
+
+                    <p>
+                        Get resources and support to help you
+                        prepare for your next step.
+                    </p>
+
+                    <a href="#" class="btn btn-outline-primary">
+                        Get Support
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     NORTH BATTLEFORD
+========================== -->
+
+<section class="section local-section">
+
+    <div class="container">
+
+        <div class="local-box">
+
+            <div class="row align-items-center g-4">
+
+                <div class="col-lg-8">
+
+                    <span class="section-label">
+                        Local Opportunities
+                    </span>
+
+                    <h2>
+                        Built for young people in North Battleford.
+                    </h2>
+
+                    <p class="mb-0">
+                        YJB is here to make it easier for young people
+                        in North Battleford and the surrounding area to
+                        discover local employment opportunities, gain
+                        experience, and connect with employers.
+                    </p>
+
+                </div>
+
+                <div class="col-lg-4 text-lg-end">
+
+                    <a href="#" class="btn btn-yjb btn-lg">
+                        Explore Local Jobs →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CTA
+========================== -->
+
+<section class="cta text-center">
+
+    <div class="container">
+
+        <h2>
+            Ready to take your first step?
+        </h2>
+
+        <p>
+            Your next opportunity could be closer than you think.
+            Start exploring jobs and opportunities today.
+        </p>
+
+        <div class="d-flex justify-content-center flex-wrap gap-3">
+
+            <a href="#" class="btn btn-yjb btn-lg">
+                Find Jobs →
+            </a>
+
+            <a href="#" class="btn btn-outline-white btn-lg">
+                Learn More
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Bootstrap 5 JS -->
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
 
 {% endblock %}
+```
+
