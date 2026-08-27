@@ -1,7 +1,980 @@
 {% extends "layout.html" %}
+{% load static %}
 
 {% block content %}
 
-<div>About</div>
+<style>
+
+    /* ========================================================= */
+    /* GENERAL */
+    /* ========================================================= */
+
+    .yjb-hero {
+        background: linear-gradient(135deg, #1d4ed8, #2563eb, #3b82f6);
+        color: white;
+        border-radius: 0 0 30px 30px;
+        padding: 90px 20px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .yjb-hero::before {
+        content: "";
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 50%;
+        top: -220px;
+        right: -100px;
+    }
+
+    .yjb-hero::after {
+        content: "";
+        position: absolute;
+        width: 250px;
+        height: 250px;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 50%;
+        bottom: -160px;
+        left: -80px;
+    }
+
+    .yjb-hero-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .yjb-badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        padding: 8px 18px;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+
+    .yjb-hero h1 {
+        font-size: clamp(3rem, 7vw, 5rem);
+        font-weight: 800;
+        letter-spacing: -2px;
+    }
+
+    .yjb-hero p {
+        max-width: 750px;
+        margin: 20px auto 0;
+        font-size: 1.2rem;
+        line-height: 1.7;
+        opacity: 0.95;
+    }
+
+    .yjb-section {
+        padding: 80px 0;
+    }
+
+    .yjb-section-title {
+        font-weight: 800;
+        color: #172554;
+    }
+
+    .yjb-section-subtitle {
+        color: #64748b;
+        max-width: 700px;
+        margin: 0 auto;
+        line-height: 1.7;
+    }
+
+    .yjb-card {
+        background: white;
+        border: 0;
+        border-radius: 20px;
+        padding: 35px;
+        height: 100%;
+        box-shadow: 0 8px 30px rgba(15, 23, 42, 0.07);
+        transition: all 0.25s ease;
+    }
+
+    .yjb-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 40px rgba(15, 23, 42, 0.12);
+    }
+
+    .yjb-icon {
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #eff6ff;
+        color: #2563eb;
+        border-radius: 15px;
+        font-size: 1.6rem;
+        margin-bottom: 22px;
+    }
+
+    .yjb-card h3 {
+        color: #172554;
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+
+    .yjb-card p {
+        color: #64748b;
+        line-height: 1.75;
+    }
+
+    .yjb-info-section {
+        background: #ffffff;
+    }
+
+    .yjb-feature-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .yjb-feature-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        margin-bottom: 18px;
+        color: #475569;
+    }
+
+    .yjb-feature-list i {
+        color: #22c55e;
+        font-size: 1.2rem;
+        margin-top: 2px;
+    }
+
+    .yjb-location {
+        background: #eff6ff;
+    }
+
+    .yjb-location-card {
+        background: white;
+        border-radius: 20px;
+        padding: 35px;
+        height: 100%;
+        box-shadow: 0 8px 30px rgba(15, 23, 42, 0.06);
+    }
+
+    /* ========================================================= */
+    /* NORTH BATTLEFORD WATER TOWER IMAGE */
+    /* ========================================================= */
+
+    .yjb-location-image {
+        width: 100%;
+        height: 320px;
+        object-fit: cover;
+        display: block;
+        border-radius: 16px;
+        margin-bottom: 30px;
+    }
+
+    .yjb-stat {
+        text-align: center;
+        padding: 25px 15px;
+    }
+
+    .yjb-stat-number {
+        color: #2563eb;
+        font-size: 2rem;
+        font-weight: 800;
+    }
+
+    .yjb-stat-label {
+        color: #64748b;
+        font-size: 0.9rem;
+        margin-top: 5px;
+    }
+
+    .yjb-industry {
+        background: #f8fafc;
+        border-radius: 12px;
+        padding: 15px 18px;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #475569;
+        font-weight: 500;
+    }
+
+    .yjb-industry i {
+        color: #2563eb;
+        font-size: 1.2rem;
+    }
+
+    .yjb-goal {
+        background: #f8fafc;
+    }
+
+    .yjb-goal-box {
+        max-width: 850px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .yjb-goal-text {
+        font-size: 1.4rem;
+        line-height: 1.7;
+        color: #475569;
+    }
+
+    .yjb-cta {
+        background: #172554;
+        color: white;
+        padding: 80px 20px;
+    }
+
+    .yjb-cta h2 {
+        font-weight: 800;
+    }
+
+    .yjb-cta p {
+        color: #bfdbfe;
+        max-width: 650px;
+        margin: 15px auto 30px;
+        line-height: 1.7;
+    }
+
+    .yjb-btn {
+        display: inline-block;
+        background: white;
+        color: #2563eb;
+        padding: 13px 28px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-weight: 700;
+        transition: all 0.2s ease;
+    }
+
+    .yjb-btn:hover {
+        background: #dbeafe;
+        color: #172554;
+        transform: translateY(-2px);
+    }
+
+    /* ========================================================= */
+    /* MOBILE */
+    /* ========================================================= */
+
+    @media (max-width: 768px) {
+
+        .yjb-hero {
+            padding: 70px 20px;
+        }
+
+        .yjb-section {
+            padding: 60px 15px;
+        }
+
+        .yjb-card,
+        .yjb-location-card {
+            padding: 28px;
+        }
+
+        .yjb-location-image {
+            height: 240px;
+        }
+
+    }
+
+</style>
+
+
+<!-- ========================================================= -->
+<!-- HERO -->
+<!-- ========================================================= -->
+
+<section class="yjb-hero text-center">
+
+    <div class="container yjb-hero-content">
+
+        <div class="yjb-badge">
+            <i class="bi bi-geo-alt-fill me-1"></i>
+            North Battleford, Saskatchewan
+        </div>
+
+        <h1>About YJB</h1>
+
+        <p>
+            Find jobs. Learn more. Get hired.
+            YJB connects young people with job opportunities
+            while helping employers find the right people.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- INTRODUCTION -->
+<!-- ========================================================= -->
+
+<section class="yjb-section">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="yjb-section-title display-6">
+                Jobs meet people.
+            </h2>
+
+            <p class="yjb-section-subtitle mt-3">
+                YJB is being built to make finding a job easier for young people
+                and finding great employees easier for employers.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <!-- JOB SEEKERS -->
+
+            <div class="col-md-6">
+
+                <div class="yjb-card">
+
+                    <div class="yjb-icon">
+                        <i class="bi bi-person-check-fill"></i>
+                    </div>
+
+                    <h3>For Job Seekers</h3>
+
+                    <p>
+                        We believe young people deserve better access to jobs,
+                        better information about the opportunities available
+                        to them, and opportunities that match their skills
+                        and interests.
+                    </p>
+
+                    <p>
+                        YJB helps young job seekers discover opportunities in
+                        their areas of interest and learn more about the jobs
+                        they are applying for.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- EMPLOYERS -->
+
+            <div class="col-md-6">
+
+                <div class="yjb-card">
+
+                    <div class="yjb-icon">
+                        <i class="bi bi-building-check"></i>
+                    </div>
+
+                    <h3>For Employers</h3>
+
+                    <p>
+                        We want to make hiring easier for employers by helping
+                        them connect with young people who are actively looking
+                        for work.
+                    </p>
+
+                    <p>
+                        YJB helps employers find young people who are interested
+                        in building their skills, gaining experience, and
+                        becoming part of a team.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- NORTH BATTLEFORD -->
+<!-- ========================================================= -->
+
+<section class="yjb-section yjb-location">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="text-primary fw-bold">
+                STARTING IN OUR COMMUNITY
+            </span>
+
+            <h2 class="yjb-section-title display-6 mt-2">
+                Built for North Battleford.
+            </h2>
+
+            <p class="yjb-section-subtitle mt-3">
+                YJB is being developed with North Battleford and the surrounding
+                Battlefords community in mind.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4 align-items-stretch">
+
+
+            <!-- ================================================= -->
+            <!-- ABOUT NORTH BATTLEFORD -->
+            <!-- ================================================= -->
+
+            <div class="col-lg-7">
+
+                <div class="yjb-location-card">
+
+
+                    <!-- WATER TOWER PHOTO -->
+
+                    <img
+                        src="{% static 'images/north-battleford-water-tower.jpg' %}"
+                        alt="North Battleford water tower"
+                        class="yjb-location-image"
+                    >
+
+
+                    <div class="yjb-icon">
+                        <i class="bi bi-geo-alt-fill"></i>
+                    </div>
+
+
+                    <h3 class="yjb-section-title">
+                        North Battleford
+                    </h3>
+
+
+                    <p class="text-secondary mt-3" style="line-height: 1.8;">
+
+                        North Battleford is a regional hub in northwest
+                        Saskatchewan. The community serves people from
+                        surrounding communities and is connected to the region
+                        through major highways, rail, and an airport.
+
+                    </p>
+
+
+                    <p class="text-secondary" style="line-height: 1.8;">
+
+                        The City describes North Battleford as a place with
+                        employment opportunities ranging from entry-level
+                        positions to management and career-development
+                        opportunities.
+
+                    </p>
+
+
+                    <p class="text-secondary" style="line-height: 1.8;">
+
+                        That makes North Battleford a great place to start
+                        building a platform focused on helping young people
+                        discover local work, gain experience, and learn about
+                        different career paths.
+
+                    </p>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- ================================================= -->
+            <!-- QUICK FACTS -->
+            <!-- ================================================= -->
+
+            <div class="col-lg-5">
+
+                <div class="yjb-location-card">
+
+                    <h3 class="yjb-section-title mb-4">
+                        North Battleford at a glance
+                    </h3>
+
+
+                    <div class="row">
+
+
+                        <div class="col-6">
+
+                            <div class="yjb-stat">
+
+                                <div class="yjb-stat-number">
+                                    19,335
+                                </div>
+
+                                <div class="yjb-stat-label">
+                                    2023 Census Agglomeration Population
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-6">
+
+                            <div class="yjb-stat">
+
+                                <div class="yjb-stat-number">
+                                    7th
+                                </div>
+
+                                <div class="yjb-stat-label">
+                                    Largest city in Saskatchewan
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-6">
+
+                            <div class="yjb-stat">
+
+                                <div class="yjb-stat-number">
+                                    5
+                                </div>
+
+                                <div class="yjb-stat-label">
+                                    Major highways
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-6">
+
+                            <div class="yjb-stat">
+
+                                <div class="yjb-stat-number">
+                                    1
+                                </div>
+
+                                <div class="yjb-stat-label">
+                                    Regional airport
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- LOCAL JOB MARKET -->
+<!-- ========================================================= -->
+
+<section class="yjb-section yjb-info-section">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+
+            <!-- TEXT -->
+
+            <div class="col-lg-6">
+
+                <span class="text-primary fw-bold">
+                    LOCAL OPPORTUNITIES
+                </span>
+
+                <h2 class="yjb-section-title display-6 mt-2">
+                    There are many paths to explore.
+                </h2>
+
+                <p class="text-secondary mt-4"
+                   style="line-height: 1.8;">
+
+                    North Battleford has a diverse local economy. The City
+                    identifies healthcare, sales, trades, transportation,
+                    and equipment operations among major employment areas.
+
+                </p>
+
+                <p class="text-secondary"
+                   style="line-height: 1.8;">
+
+                    The community also has opportunities connected to retail,
+                    food and accommodations, education, construction, and
+                    transportation.
+
+                </p>
+
+                <p class="text-secondary"
+                   style="line-height: 1.8;">
+
+                    YJB can help young people discover these opportunities
+                    and understand what different jobs can offer them.
+
+                </p>
+
+            </div>
+
+
+            <!-- INDUSTRIES -->
+
+            <div class="col-lg-6">
+
+                <div class="yjb-card">
+
+                    <h3 class="mb-4">
+                        Local industries
+                    </h3>
+
+
+                    <div class="yjb-industry">
+                        <i class="bi bi-heart-pulse-fill"></i>
+                        <span>Healthcare & Social Assistance</span>
+                    </div>
+
+
+                    <div class="yjb-industry">
+                        <i class="bi bi-shop"></i>
+                        <span>Retail</span>
+                    </div>
+
+
+                    <div class="yjb-industry">
+                        <i class="bi bi-cup-hot-fill"></i>
+                        <span>Accommodations & Food Services</span>
+                    </div>
+
+
+                    <div class="yjb-industry">
+                        <i class="bi bi-mortarboard-fill"></i>
+                        <span>Education</span>
+                    </div>
+
+
+                    <div class="yjb-industry">
+                        <i class="bi bi-tools"></i>
+                        <span>Construction & Trades</span>
+                    </div>
+
+
+                    <div class="yjb-industry">
+                        <i class="bi bi-truck"></i>
+                        <span>Transportation</span>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- JOB INFORMATION -->
+<!-- ========================================================= -->
+
+<section class="yjb-section">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+
+            <!-- TEXT -->
+
+            <div class="col-lg-6">
+
+                <span class="text-primary fw-bold">
+                    MORE THAN A JOB BOARD
+                </span>
+
+                <h2 class="yjb-section-title display-6 mt-2">
+                    Better information means better decisions.
+                </h2>
+
+                <p class="text-secondary mt-4"
+                   style="line-height: 1.8;">
+
+                    One of the main purposes of YJB is to give young job
+                    seekers more information about the jobs they are
+                    interested in.
+
+                </p>
+
+                <p class="text-secondary"
+                   style="line-height: 1.8;">
+
+                    Instead of simply showing a job title and an application
+                    button, we want to help people understand what a job is
+                    really like and whether it is right for them.
+
+                </p>
+
+            </div>
+
+
+            <!-- FEATURES -->
+
+            <div class="col-lg-6">
+
+                <div class="yjb-card">
+
+                    <h3 class="mb-4">
+                        Learn more about the job
+                    </h3>
+
+
+                    <ul class="yjb-feature-list">
+
+                        <li>
+                            <i class="bi bi-check-circle-fill"></i>
+                            <span>What you actually do in the job</span>
+                        </li>
+
+                        <li>
+                            <i class="bi bi-check-circle-fill"></i>
+                            <span>Skills you can learn and develop</span>
+                        </li>
+
+                        <li>
+                            <i class="bi bi-check-circle-fill"></i>
+                            <span>Typical hours and work schedules</span>
+                        </li>
+
+                        <li>
+                            <i class="bi bi-check-circle-fill"></i>
+                            <span>Experience and qualifications required</span>
+                        </li>
+
+                        <li>
+                            <i class="bi bi-check-circle-fill"></i>
+                            <span>Pay and other important job details</span>
+                        </li>
+
+                        <li>
+                            <i class="bi bi-check-circle-fill"></i>
+                            <span>Whether the job is suitable for a first job</span>
+                        </li>
+
+                        <li>
+                            <i class="bi bi-check-circle-fill"></i>
+                            <span>Where the experience could take you next</span>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- COMMUNITY -->
+<!-- ========================================================= -->
+
+<section class="yjb-section yjb-location">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="text-primary fw-bold">
+                MORE THAN WORK
+            </span>
+
+            <h2 class="yjb-section-title display-6 mt-2">
+                A community to grow in.
+            </h2>
+
+            <p class="yjb-section-subtitle mt-3">
+
+                Finding a job is only one part of building a future.
+                North Battleford offers recreation, education, businesses,
+                community organizations, and opportunities to gain experience.
+
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <div class="col-md-4">
+
+                <div class="yjb-card">
+
+                    <div class="yjb-icon">
+                        <i class="bi bi-tree-fill"></i>
+                    </div>
+
+                    <h3>Explore</h3>
+
+                    <p>
+                        North Battleford and the surrounding Battlefords offer
+                        parks, recreation facilities, lakes, and outdoor
+                        activities for people of all ages.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="yjb-card">
+
+                    <div class="yjb-icon">
+                        <i class="bi bi-book-fill"></i>
+                    </div>
+
+                    <h3>Learn</h3>
+
+                    <p>
+                        Young people can build their skills through local
+                        education and training opportunities, helping them
+                        prepare for future careers.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="yjb-card">
+
+                    <div class="yjb-icon">
+                        <i class="bi bi-people-fill"></i>
+                    </div>
+
+                    <h3>Connect</h3>
+
+                    <p>
+                        YJB is about connecting young people with local
+                        employers and helping build stronger connections
+                        throughout the community.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- MISSION -->
+<!-- ========================================================= -->
+
+<section class="yjb-section yjb-goal">
+
+    <div class="container">
+
+        <div class="yjb-goal-box">
+
+            <div class="yjb-icon mx-auto">
+                <i class="bi bi-bullseye"></i>
+            </div>
+
+            <h2 class="yjb-section-title display-6">
+                Our Goal
+            </h2>
+
+            <p class="yjb-goal-text mt-4">
+                Help young people find jobs they want,
+                and help employers find people who want to work.
+            </p>
+
+            <p class="text-secondary mt-3"
+               style="line-height: 1.8;">
+
+                We want YJB to start local, build strong community connections,
+                and eventually help young people find opportunities wherever
+                their future takes them.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- CTA -->
+<!-- ========================================================= -->
+
+<section class="yjb-cta text-center">
+
+    <div class="container">
+
+        <h2 class="display-6">
+            North Battleford has opportunities.
+        </h2>
+
+        <p class="lead">
+
+            YJB is here to help young people find them,
+            learn about them, and take the next step.
+
+        </p>
+
+        <a href="#" class="yjb-btn">
+
+            Explore Jobs
+
+            <i class="bi bi-arrow-right ms-2"></i>
+
+        </a>
+
+    </div>
+
+</section>
+
 
 {% endblock %}
