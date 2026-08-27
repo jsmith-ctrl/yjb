@@ -1,53 +1,435 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<div class="accordion" id="accordionExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-        Job Description
-      </button>
-    </h2>
-    <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <strong>Flamingo Fire:Restarant.</strong> 
-      </div> Help us make our famous pizza at Flamingo Fire:Resteraunt.
-   <P>WAGE $41-$67.</P>
-    <p>Location:Toronto.</P>
+
+<style>
+    .job-page {
+        background: linear-gradient(135deg, #fff5f5, #fff8e7);
+        min-height: 100vh;
+        padding: 50px 0;
+    }
+
+    .job-card {
+        max-width: 950px;
+        margin: auto;
+        background: white;
+        border-radius: 25px;
+        overflow: hidden;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    .job-header {
+        background: linear-gradient(135deg, #ff4b2b, #ff8c42);
+        color: white;
+        padding: 45px;
+        position: relative;
+    }
+
+    .job-header h1 {
+        font-weight: 800;
+        font-size: 2.7rem;
+        margin-bottom: 10px;
+    }
+
+    .job-header p {
+        font-size: 1.1rem;
+        opacity: 0.95;
+    }
+
+    .restaurant-badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 8px 16px;
+        border-radius: 30px;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .job-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 15px;
+        padding: 25px;
+        background: #fff;
+    }
+
+    .info-box {
+        background: #fff7f3;
+        border-radius: 15px;
+        padding: 18px;
+        text-align: center;
+        transition: 0.3s;
+    }
+
+    .info-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(255, 75, 43, 0.15);
+    }
+
+    .info-icon {
+        font-size: 1.8rem;
+        margin-bottom: 8px;
+    }
+
+    .info-title {
+        font-size: 0.85rem;
+        color: #777;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+
+    .info-value {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #333;
+    }
+
+    .accordion {
+        padding: 0 25px 25px;
+    }
+
+    .accordion-item {
+        border: none;
+        margin-bottom: 15px;
+        border-radius: 15px !important;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+    }
+
+    .accordion-button {
+        font-weight: 700;
+        font-size: 1.05rem;
+        padding: 20px;
+        color: #333;
+        background: #fff;
+    }
+
+    .accordion-button:not(.collapsed) {
+        background: #fff1ec;
+        color: #ff4b2b;
+        box-shadow: none;
+    }
+
+    .accordion-button:focus {
+        box-shadow: none;
+    }
+
+    .accordion-body {
+        padding: 25px;
+        line-height: 1.7;
+        color: #555;
+    }
+
+    .accordion-body h5 {
+        color: #ff4b2b;
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+
+    .accordion-body li {
+        margin-bottom: 10px;
+    }
+
+    .apply-section {
+        text-align: center;
+        padding: 35px;
+        background: #fff8f5;
+    }
+
+    .apply-section h3 {
+        font-weight: 800;
+        margin-bottom: 10px;
+    }
+
+    .apply-section p {
+        color: #777;
+        margin-bottom: 20px;
+    }
+
+    .apply-btn {
+        display: inline-block;
+        background: linear-gradient(135deg, #ff4b2b, #ff7b39);
+        color: white;
+        text-decoration: none;
+        padding: 14px 35px;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        transition: 0.3s;
+        box-shadow: 0 8px 20px rgba(255, 75, 43, 0.25);
+    }
+
+    .apply-btn:hover {
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 12px 25px rgba(255, 75, 43, 0.35);
+    }
+
+    .footer-note {
+        text-align: center;
+        padding: 20px;
+        color: #999;
+        font-size: 0.9rem;
+    }
+</style>
+
+
+<div class="job-page">
+
+    <div class="container">
+
+        <div class="job-card">
+
+            <!-- Header -->
+            <div class="job-header">
+
+                <div class="restaurant-badge">
+                    🍕 Restaurant Job
+                </div>
+
+                <h1>Flamingo Fire Restaurant</h1>
+
+                <p>
+                    Join our team and help us create our famous pizza
+                    while providing an amazing experience for our customers!
+                </p>
+
+            </div>
+
+
+            <!-- Job Information -->
+            <div class="job-info">
+
+                <div class="info-box">
+                    <div class="info-icon">💰</div>
+                    <div class="info-title">Wage</div>
+                    <div class="info-value">$41–$67/hour</div>
+                </div>
+
+                <div class="info-box">
+                    <div class="info-icon">📍</div>
+                    <div class="info-title">Location</div>
+                    <div class="info-value">Toronto, Ontario</div>
+                </div>
+
+                <div class="info-box">
+                    <div class="info-icon">🕐</div>
+                    <div class="info-title">Job Type</div>
+                    <div class="info-value">Full-Time</div>
+                </div>
+
+                <div class="info-box">
+                    <div class="info-icon">👨‍🍳</div>
+                    <div class="info-title">Experience</div>
+                    <div class="info-value">3–5 Years</div>
+                </div>
+
+            </div>
+
+
+            <!-- Accordion -->
+            <div class="accordion" id="accordionExample">
+
+                <!-- Job Description -->
+                <div class="accordion-item">
+
+                    <h2 class="accordion-header" id="headingOne">
+
+                        <button class="accordion-button collapsed"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne"
+                                aria-expanded="false"
+                                aria-controls="collapseOne">
+
+                            🍕 Job Description
+
+                        </button>
+
+                    </h2>
+
+                    <div id="collapseOne"
+                         class="accordion-collapse collapse"
+                         aria-labelledby="headingOne"
+                         data-bs-parent="#accordionExample">
+
+                        <div class="accordion-body">
+
+                            <h5>What You'll Do</h5>
+
+                            <p>
+                                At Flamingo Fire Restaurant, you'll be part of
+                                a friendly team that works together to prepare
+                                delicious food and provide excellent customer
+                                service.
+                            </p>
+
+                            <p>
+                                Your main responsibilities will include
+                                preparing food, helping customers, keeping
+                                the workplace clean, and working with other
+                                team members to make sure the restaurant runs
+                                smoothly.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Requirements -->
+                <div class="accordion-item">
+
+                    <h2 class="accordion-header" id="headingTwo">
+
+                        <button class="accordion-button collapsed"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo"
+                                aria-expanded="false"
+                                aria-controls="collapseTwo">
+
+                            ⭐ Requirements
+
+                        </button>
+
+                    </h2>
+
+                    <div id="collapseTwo"
+                         class="accordion-collapse collapse"
+                         aria-labelledby="headingTwo"
+                         data-bs-parent="#accordionExample">
+
+                        <div class="accordion-body">
+
+                            <h5>What We're Looking For</h5>
+
+                            <ul>
+
+                                <li>
+                                    Ability to work well with employees
+                                    and customers.
+                                </li>
+
+                                <li>
+                                    Ability to remain calm and professional
+                                    during stressful situations.
+                                </li>
+
+                                <li>
+                                    Friendly and respectful communication
+                                    skills.
+                                </li>
+
+                                <li>
+                                    Previous food preparation or restaurant
+                                    experience.
+                                </li>
+
+                                <li>
+                                    Required food-handling certification
+                                    or license.
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Terms -->
+                <div class="accordion-item">
+
+                    <h2 class="accordion-header" id="headingThree">
+
+                        <button class="accordion-button collapsed"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#collapseThree"
+                                aria-expanded="false"
+                                aria-controls="collapseThree">
+
+                            📋 Terms & Conditions
+
+                        </button>
+
+                    </h2>
+
+                    <div id="collapseThree"
+                         class="accordion-collapse collapse"
+                         aria-labelledby="headingThree"
+                         data-bs-parent="#accordionExample">
+
+                        <div class="accordion-body">
+
+                            <h5>Important Information</h5>
+
+                            <ul>
+
+                                <li>
+                                    This is a full-time position.
+                                </li>
+
+                                <li>
+                                    Maximum work time is 10 hours per day.
+                                </li>
+
+                                <li>
+                                    Applicants should have 3–5 years
+                                    of relevant experience.
+                                </li>
+
+                                <li>
+                                    Applicants must have any required
+                                    food-related education or certification.
+                                </li>
+
+                                <li>
+                                    Employees are expected to maintain a
+                                    respectful and professional workplace.
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Apply Section -->
+            <div class="apply-section">
+
+                <h3>Ready to Join the Team? 🍕</h3>
+
+                <p>
+                    Take the next step toward becoming part of
+                    Flamingo Fire Restaurant!
+                </p>
+
+                <a href="#" class="apply-btn">
+                    Apply Now →
+                </a>
+
+            </div>
+
+
+            <div class="footer-note">
+                Youth Job Bank • Find your next opportunity
+            </div>
+
+        </div>
+
     </div>
+
 </div>
 
-  <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            Requirements
-    </button>
-    </h2>
-    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <strong>Requirements for Flamingo Fire:Restarant.</strong>
-      <p>You need to be able to compramise with otheer employees and customers.
-        If any curcumstance that makes customers panic dont panic with them,instead help them calm down.
-       You need experience making food a other resteraunts,plus will also need a lisence for making food.
-    </p>
-    
-    </div>
-    </div>
-  </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-        Terms And Conditions
-      </button>
-    </h2>
-    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <strong> Terms And Conditions for Flamingo Fire:Restarant.</strong>
-     <p>This Job is full time and max work time for a day is 10 hours.Needed Experience is up to 3-5 years of working for application.
-        Education needed is the food of uneversity bleachor card.</p>
-</div>
-    </div> 
-  </div>
-</div>
-                                                                
 {% endblock %}
