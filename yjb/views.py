@@ -14,7 +14,7 @@ def default(request):
     return render(request, "yjb/default.html", context)
 
 def home(request):
-    return render(request, "yjb/home.html", {})
+    return render(request, "yjb/default.html", {})
 
 def job_listings(request):
     return render(request, "yjb/job-listings.html")
