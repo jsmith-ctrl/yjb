@@ -37,3 +37,6 @@ def employer_signup(request):
 def helloworld(request):
      debug_string = "<br>".join(f"<b>{k}</b>: {v}" for k, v in request.META.items())
      return HttpResponse(debug_string, content_type="text/html")
+
+def job_detail(request):
+    return render(request, "yjb/job-detail.html")
