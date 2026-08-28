@@ -18,6 +18,16 @@
         overflow: hidden;
     }
 
+    .yjb-hero-image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.24;
+        mix-blend-mode: luminosity;
+    }
+
     .yjb-hero::before {
         content: "";
         position: absolute;
@@ -93,6 +103,24 @@
         height: 100%;
         box-shadow: 0 8px 30px rgba(15, 23, 42, 0.07);
         transition: all 0.25s ease;
+    }
+
+    .yjb-card-image {
+        width: calc(100% + 70px);
+        height: 190px;
+        object-fit: cover;
+        display: block;
+        margin: -35px -35px 30px;
+        border-radius: 20px 20px 0 0;
+    }
+
+    .yjb-community-image {
+        width: 100%;
+        height: 210px;
+        object-fit: cover;
+        display: block;
+        border-radius: 14px;
+        margin-bottom: 24px;
     }
 
     .yjb-card:hover {
@@ -223,6 +251,16 @@
         color: #475569;
     }
 
+    .yjb-goal-image {
+        width: 100%;
+        max-width: 520px;
+        height: 230px;
+        object-fit: cover;
+        display: block;
+        margin: 0 auto 32px;
+        border-radius: 18px;
+    }
+
     .yjb-cta {
         background: #172554;
         color: white;
@@ -276,6 +314,11 @@
             padding: 28px;
         }
 
+        .yjb-card-image {
+            width: calc(100% + 56px);
+            margin: -28px -28px 26px;
+        }
+
         .yjb-location-image {
             height: 240px;
         }
@@ -290,6 +333,12 @@
 <!-- ========================================================= -->
 
 <section class="yjb-hero text-center">
+
+    <img
+        src="https://images.unsplash.com/photo-1509099836639-18ba1795216f?auto=format&fit=crop&w=1800&q=85"
+        alt="Young people collaborating outdoors"
+        class="yjb-hero-image"
+    >
 
     <div class="container yjb-hero-content">
 
@@ -341,9 +390,16 @@
 
                 <div class="yjb-card">
 
-                    <div class="yjb-icon">
+                    <img
+                        src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=900&q=85"
+                        alt="A team working together at a table"
+                        class="yjb-card-image"
+                        loading="lazy"
+                    >
+
+                    <!-- <div class="yjb-icon">
                         <i class="bi bi-person-check-fill"></i>
-                    </div>
+                    </div> -->
 
                     <h3>For Job Seekers</h3>
 
@@ -371,9 +427,14 @@
 
                 <div class="yjb-card">
 
-                    <div class="yjb-icon">
-                        <i class="bi bi-building-check"></i>
-                    </div>
+                    <img
+                        src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=85"
+                        alt="Coworkers meeting in a bright office"
+                        class="yjb-card-image"
+                        loading="lazy"
+                    >
+
+        
 
                     <h3>For Employers</h3>
 
@@ -437,9 +498,6 @@
 
                 <div class="yjb-location-card">
 
-
-                    <!-- WATER TOWER PHOTO -->
-
                     <img
                         src="{% static 'images/north-battleford-water-tower.jpg' %}"
                         alt="North Battleford water tower"
@@ -447,9 +505,7 @@
                     >
 
 
-                    <div class="yjb-icon">
-                        <i class="bi bi-geo-alt-fill"></i>
-                    </div>
+            
 
 
                     <h3 class="yjb-section-title">
@@ -840,6 +896,13 @@
 
                 <div class="yjb-card">
 
+                    <img
+                        src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=85"
+                        alt="A lake and trees near the community"
+                        class="yjb-community-image"
+                        loading="lazy"
+                    >
+
                     <div class="yjb-icon">
                         <i class="bi bi-tree-fill"></i>
                     </div>
@@ -861,6 +924,13 @@
 
                 <div class="yjb-card">
 
+                    <img
+                        src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=900&q=85"
+                        alt="Books and learning materials"
+                        class="yjb-community-image"
+                        loading="lazy"
+                    >
+
                     <div class="yjb-icon">
                         <i class="bi bi-book-fill"></i>
                     </div>
@@ -881,6 +951,13 @@
             <div class="col-md-4">
 
                 <div class="yjb-card">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=900&q=85"
+                        alt="Friends spending time together outdoors"
+                        class="yjb-community-image"
+                        loading="lazy"
+                    >
 
                     <div class="yjb-icon">
                         <i class="bi bi-people-fill"></i>
@@ -915,6 +992,13 @@
     <div class="container">
 
         <div class="yjb-goal-box">
+
+            <img
+                src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1100&q=85"
+                alt="Young people gathered together outdoors"
+                class="yjb-goal-image"
+                loading="lazy"
+            >
 
             <div class="yjb-icon mx-auto">
                 <i class="bi bi-bullseye"></i>
@@ -964,7 +1048,7 @@
 
         </p>
 
-        <a href="#" class="yjb-btn">
+        <a href="{% url 'job_listing' %}" class="yjb-btn">
 
             Explore Jobs
 
