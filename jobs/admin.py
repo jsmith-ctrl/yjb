@@ -5,7 +5,6 @@ from .models import Job
 @admin.register(Job)
 class JobAdmin(admin.ModelAdmin):
     list_display = (
-        "job_id",
         "title",
         "company",
         "location",
@@ -28,7 +27,7 @@ class JobAdmin(admin.ModelAdmin):
 
     ordering = ("-created_at",)
 
-    readonly_fields = ("created_at",)
+    readonly_fields = ("job_id", "created_at")
 
     fieldsets = (
         ("Job Information", {
@@ -37,6 +36,9 @@ class JobAdmin(admin.ModelAdmin):
                 "title",
                 "company",
                 "description",
+                "commitment",
+                "Experience",
+                "requirements",
             )
         }),
         ("Location & Compensation", {
