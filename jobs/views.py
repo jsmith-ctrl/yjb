@@ -7,6 +7,7 @@ def job_list(request):
 
     return render(request, 'jobs/job_list.html', {'jobs': jobs})
 
-def job_detail(request):
+def job_detail(request, job_id):
+    job = Job.objects.get(job_id=job_id)
 
-    return render(request, 'jobs/job-detail.html', {})
+    return render(request, 'jobs/job-detail.html', {'job': job})
