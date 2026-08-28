@@ -5,6 +5,7 @@ from .models import Job
 @admin.register(Job)
 class JobAdmin(admin.ModelAdmin):
     list_display = (
+        "job_id",
         "title",
         "company",
         "location",
@@ -32,6 +33,7 @@ class JobAdmin(admin.ModelAdmin):
     fieldsets = (
         ("Job Information", {
             "fields": (
+                "job_id",
                 "title",
                 "company",
                 "description",

@@ -184,14 +184,13 @@
             <div class="job-header">
 
                 <div class="restaurant-badge">
-                    🍕 Restaurant Job
+                    Job opportunity
                 </div>
 
-                <h1>Flamingo Fire Restaurant</h1>
+                <h1>{{ job.title }}</h1>
 
                 <p>
-                    Join our team and help us create our famous pizza
-                    while providing an amazing experience for our customers!
+                    Join {{ job.company }} and take the next step in your career.
                 </p>
 
             </div>
@@ -203,25 +202,25 @@
                 <div class="info-box">
                     <div class="info-icon">💰</div>
                     <div class="info-title">Wage</div>
-                    <div class="info-value">$41–$67/hour</div>
+                    <div class="info-value">{{ job.salary }}</div>
                 </div>
 
                 <div class="info-box">
                     <div class="info-icon">📍</div>
                     <div class="info-title">Location</div>
-                    <div class="info-value">Toronto, Ontario</div>
+                    <div class="info-value">{{ job.location }}</div>
                 </div>
 
                 <div class="info-box">
                     <div class="info-icon">🕐</div>
                     <div class="info-title">Job Type</div>
-                    <div class="info-value">Full-Time</div>
+                    <div class="info-value">{{ job.commitment }}</div>
                 </div>
 
                 <div class="info-box">
                     <div class="info-icon">👨‍🍳</div>
                     <div class="info-title">Experience</div>
-                    <div class="info-value">3–5 Years</div>
+                    <div class="info-value">{{ job.Experience }}</div>
                 </div>
 
             </div>
@@ -255,22 +254,9 @@
 
                         <div class="accordion-body">
 
-                            <h5>What You'll Do</h5>
+                            <h5>About this role</h5>
 
-                            <p>
-                                At Flamingo Fire Restaurant, you'll be part of
-                                a friendly team that works together to prepare
-                                delicious food and provide excellent customer
-                                service.
-                            </p>
-
-                            <p>
-                                Your main responsibilities will include
-                                preparing food, helping customers, keeping
-                                the workplace clean, and working with other
-                                team members to make sure the restaurant runs
-                                smoothly.
-                            </p>
+                            <p>{{ job.description|linebreaksbr }}</p>
 
                         </div>
 
@@ -306,34 +292,7 @@
 
                             <h5>What We're Looking For</h5>
 
-                            <ul>
-
-                                <li>
-                                    Ability to work well with employees
-                                    and customers.
-                                </li>
-
-                                <li>
-                                    Ability to remain calm and professional
-                                    during stressful situations.
-                                </li>
-
-                                <li>
-                                    Friendly and respectful communication
-                                    skills.
-                                </li>
-
-                                <li>
-                                    Previous food preparation or restaurant
-                                    experience.
-                                </li>
-
-                                <li>
-                                    Required food-handling certification
-                                    or license.
-                                </li>
-
-                            </ul>
+                            <p>{{ job.requirements|linebreaksbr }}</p>
 
                         </div>
 
@@ -367,34 +326,9 @@
 
                         <div class="accordion-body">
 
-                            <h5>Important Information</h5>
+                            <h5>Position details</h5>
 
-                            <ul>
-
-                                <li>
-                                    This is a full-time position.
-                                </li>
-
-                                <li>
-                                    Maximum work time is 10 hours per day.
-                                </li>
-
-                                <li>
-                                    Applicants should have 3–5 years
-                                    of relevant experience.
-                                </li>
-
-                                <li>
-                                    Applicants must have any required
-                                    food-related education or certification.
-                                </li>
-
-                                <li>
-                                    Employees are expected to maintain a
-                                    respectful and professional workplace.
-                                </li>
-
-                            </ul>
+                            <p>This is a {{ job.commitment }} position requiring {{ job.Experience }} of experience.</p>
 
                         </div>
 
@@ -411,8 +345,7 @@
                 <h3>Ready to Join the Team? 🍕</h3>
 
                 <p>
-                    Take the next step toward becoming part of
-                    Flamingo Fire Restaurant!
+                    Take the next step toward becoming part of {{ job.company }}!
                 </p>
 
                 <a href="#" class="apply-btn">
