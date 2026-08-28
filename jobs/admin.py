@@ -37,7 +37,7 @@ class JobAdmin(admin.ModelAdmin):
                 "company",
                 "description",
                 "commitment",
-                "Experience",
+                "experience",
                 "requirements",
             )
         }),
