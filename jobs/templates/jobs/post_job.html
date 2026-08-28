@@ -1,0 +1,175 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+
+                    <h1 class="mb-4">
+                        Post a Job
+                    </h1>
+
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                {{ form.non_field_errors }}
+                            </div>
+                        {% endif %}
+
+
+                        <!-- Job Title -->
+                        <div class="mb-3">
+                            <label for="{{ form.title.id_for_label }}" class="form-label">
+                                Job Title
+                            </label>
+
+                            {{ form.title }}
+
+                            {% for error in form.title.errors %}
+                                <div class="text-danger small">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+                        </div>
+
+
+                        <!-- Company -->
+                        <div class="mb-3">
+                            <label for="{{ form.company.id_for_label }}" class="form-label">
+                                Company
+                            </label>
+
+                            {{ form.company }}
+
+                            {% for error in form.company.errors %}
+                                <div class="text-danger small">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+                        </div>
+
+
+                        <!-- Description -->
+                        <div class="mb-3">
+                            <label for="{{ form.description.id_for_label }}" class="form-label">
+                                Job Description
+                            </label>
+
+                            {{ form.description }}
+
+                            {% for error in form.description.errors %}
+                                <div class="text-danger small">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+                        </div>
+
+
+                        <!-- Commitment -->
+                        <div class="mb-3">
+                            <label for="{{ form.commitment.id_for_label }}" class="form-label">
+                                Commitment
+                            </label>
+
+                            {{ form.commitment }}
+
+                            <div class="form-text">
+                                For example: Full-time, Part-time, Contract, or Temporary.
+                            </div>
+
+                            {% for error in form.commitment.errors %}
+                                <div class="text-danger small">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+                        </div>
+
+
+                        <!-- Location -->
+                        <div class="mb-3">
+                            <label for="{{ form.location.id_for_label }}" class="form-label">
+                                Location
+                            </label>
+
+                            {{ form.location }}
+
+                            {% for error in form.location.errors %}
+                                <div class="text-danger small">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+                        </div>
+
+
+                        <!-- Salary -->
+                        <div class="mb-3">
+                            <label for="{{ form.salary.id_for_label }}" class="form-label">
+                                Salary
+                            </label>
+
+                            {{ form.salary }}
+
+                            {% for error in form.salary.errors %}
+                                <div class="text-danger small">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+                        </div>
+
+
+                        <!-- Experience -->
+                        <div class="mb-3">
+                            <label for="{{ form.experience.id_for_label }}" class="form-label">
+                                Experience
+                            </label>
+
+                            {{ form.experience }}
+
+                            {% for error in form.experience.errors %}
+                                <div class="text-danger small">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+                        </div>
+
+
+                        <!-- Requirements -->
+                        <div class="mb-4">
+                            <label for="{{ form.requirements.id_for_label }}" class="form-label">
+                                Requirements
+                            </label>
+
+                            {{ form.requirements }}
+
+                            {% for error in form.requirements.errors %}
+                                <div class="text-danger small">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+                        </div>
+
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                Post Job
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
