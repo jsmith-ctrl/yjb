@@ -10,7 +10,7 @@ class Job(models.Model):
     commitment = models.CharField(max_length=100)
     location = models.CharField(max_length=200)
     salary = models.CharField(max_length=100)
-    Experience = models.CharField(max_length=100)
+    experience = models.CharField(max_length=100)
     requirements = models.TextField()   
     created_at = models.DateTimeField(auto_now_add=True)
 
