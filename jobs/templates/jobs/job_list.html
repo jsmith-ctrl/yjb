@@ -1,24 +1,89 @@
+
 {% extends "layout.html" %}
+{% load static %}
 
 {% block content %}
+<!-- Page Header -->
+<div class="text-center mb-5">
+    <h1 class="display-5 fw-bold">Find Your Next Opportunity</h1>
+    <p class="lead text-muted">
+        Explore job opportunities and take the next step toward your future.
+    </p>
+</div>
 
-    <h1>Available Jobs</h1>
+{% if jobs %}
 
-    {% for job in jobs %}
+    <div class="row g-4">
 
-        <h2 class="text-body-secondary">{{ job.title }}</h2>
+        {% for job in jobs %}
 
-        <p ><strong>Company:</strong> {{ job.company }}</p>
-        <p><strong>Location:</strong> {{ job.location }}</p>
-        <p><strong>Salary:</strong> {{ job.salary }}</p>
-        <p>{{ job.description }}</p>
+            <div class="col-12 col-md-6 col-lg-4">
 
-        <hr>
+                <div class="card h-100 shadow-sm border-0">
 
-    {% empty %}
+                    <div class="card-body d-flex flex-column">
 
-        <p>No jobs have been posted yet.</p>
+                        <!-- Job Title -->
+                        <h2 class="h4 fw-bold mb-3">
+                            {{ job.title }}
+                        </h2>
 
-    {% endfor %}
+                        <!-- Company -->
+                        <p class="mb-2">
+                            <strong>🏢 Company:</strong>
+                            {{ job.company }}
+                        </p>
+
+                        <!-- Location -->
+                        <p class="mb-2">
+                            <strong>📍 Location:</strong>
+                            {{ job.location }}
+                        </p>
+
+                        <!-- Salary -->
+                        <p class="mb-3">
+                            <strong>💰 Salary:</strong>
+                            {{ job.salary }}
+                        </p>
+
+                        <!-- Description -->
+                        <p class="text-muted flex-grow-1">
+                            {{ job.description }}
+                        </p>
+
+                        
+                        <a href="/jobs/job-detail/{{job.job_id}}" class="btn btn-primary w-100 mt-3">
+                            View Job
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+{% else %}
+
+    <!-- Empty State -->
+    <div class="text-center py-5">
+
+        <div class="mb-3" style="font-size: 3rem;">
+            🔎
+        </div>
+
+        <h2>No Jobs Available Yet</h2>
+
+        <p class="text-muted">
+            There aren't any job postings available right now.
+            Check back soon for new opportunities!
+        </p>
+
+    </div>
+
+{% endif %}
 
 {% endblock %}
