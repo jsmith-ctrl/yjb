@@ -59,7 +59,7 @@
               {% endif %}
               
               {% if user.is_authenticated and user.role == "employer" %}
-              <li><a class="dropdown-item" href="{% url 'posting' %}">Post a Job</a></li>
+              <li><a class="dropdown-item" href="{% url 'post_job' %}">Post a Job</a></li>
               {% endif %}
             </ul>
           </li>
